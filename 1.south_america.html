@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界地図ultra</title>
+    <link rel="stylesheet" href="kaken2.2.css"> <!-- 外部CSSファイルをリンク -->
+</head>
+<body>
+    <nav id="navigation">
+        <a href="1.kaken2.1.html" class="logo">世界地図ultra<span>+</span></a>
+        <ul class="links">
+            <li><a href="1.kaken2.1.html">ホーム</a></li>
+            <li><a href="https://www.google.com/maps" target="_blank">世界地図</a></li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">クイズ<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.africa_quiz.html">アフリカ</a></li>
+                    <li><a href="1.asia_quiz.html">アジア</a></li>
+                    <li><a href="1.europe_quiz.html_">ヨーロッパ</a></li>
+                    <li><a href="1.north-america_quiz.html">北アメリカ</a></li>
+                    <li><a href="1.south-america_quiz.html">南アメリカ</a></li>
+                    <li><a href="1.oceania_quiz.html">オセアニア</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">国<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.africa.html">アフリカ</a></li>
+                    <li><a href="1.asia.html">アジア</a></li>
+                    <li><a href="1.europe.html">ヨーロッパ</a></li>
+                    <li><a href="1.north_america.html">北アメリカ</a></li>
+                    <li><a href="1.south_america.html">南アメリカ</a></li>
+                    <li><a href="1.oseania.html">オセアニア</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Language<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.kaken2.1.html">1.日本語</a></li>
+                    <li><a href="2.kaken2.1.html">2.English (U.S.)</a></li>
+                    <li><a href="3.kaken2.1.html">3.English (UK)</a></li>
+                    <li><a href="4.kaken2.1.html">4.中文</a></li>
+                    <li><a href="5.kaken2.1.html">5.Русский (язык)</a></li>
+                    <li><a href="">オセアニア</a></li>
+                </ul>
+            </li>
+            <li><a href="#">ランキング</a></li>
+        </ul>
+    </nav>
+    
+    <div id="info-container">
+        <h1>南アメリカ地域の国情報</h1>
+        <p>以下の国から選んでください:</p>
+
+        <!-- ドロップダウンメニュー -->
+        <div class="dropdown">
+            <a href="#" class="trigger-drop">国を選択<i class="arrow"></i></a>
+            <ul class="drop" id="country-dropdown">
+                <li><a href="#" data-country="argentina">アルゼンチン</a></li>
+                <li><a href="#" data-country="chile">チリ</a></li>
+                <li><a href="#" data-country="brazil">ブラジル</a></li>
+                <li><a href="#" data-country="colombia">コロンビア</a></li>
+                <li><a href="#" data-country="peru">ペルー</a></li>
+            </ul>
+        </div>
+
+        <!-- 国情報セクション -->
+        <div id="country-info" style="display:none;">
+            <h2 id="country-name"></h2>
+            <div id="country-details"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const countryDropdown = document.getElementById('country-dropdown');
+            const countryInfo = document.getElementById('country-info');
+            const countryName = document.getElementById('country-name');
+            const countryDetails = document.getElementById('country-details');
+
+            // 国情報データ
+            const countryData = {
+                argentina: {
+                    name: 'アルゼンチン',
+                    details: `
+                        <h3>基本情報</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 4,665万人</li>
+                            <li><strong>面積:</strong> 2,780,000㎢</li>
+                            <li><strong>首都:</strong> ブエノスアイレス</li>
+                            <li><strong>言語:</strong> スペイン語</li>
+                            <li><strong>主な宗教:</strong>キリスト教</li>
+                        </ul>
+
+                        <h3>生活</h3>
+                        <ul>
+                            <li>、</li>
+                            <li>、</li>
+                        </ul>
+
+                        <h3>食事</h3>
+                        <ul>
+                            <li>アサードやチョリパン、エンパナーダなどが主に食べられる</li>
+                            <li>食事中には音を出さず、食器を持ち上げてはいけない。</li>
+                            <li>塩を渡す際は、テーブルに置き手渡しはNG。</li>
+                        </ul>
+
+                        <h3>マナー</h3>
+                        <ul>
+                            <li>歩きながら食事をしてはいけない。</li>
+                            <li>日曜の朝に電話をすることはマナー違反。</li>
+                            <li>約束の時間よりも早くつきすぎてはいけない。</li>
+                        </ul>
+
+                        <h3>観光名所</h3>
+                        <ul>
+                            <li>イグアスの滝</li>
+                            <li>ウマワカ渓谷</li>
+                        </ul>
+
+                    `
+                    
+                },
+                chile: {
+                    name: 'チリ',
+                    details: `
+                        <h3>基本情報</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 1,963万人</li>
+                            <li><strong>面積:</strong> 756,600㎢</li>
+                            <li><strong>首都:</strong> サンティアゴ</li>
+                            <li><strong>言語:</strong> スペイン語</li>
+                            <li><strong>主な宗教:</strong>カトリック</li>
+                        </ul>
+
+                        <h3>生活</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>食事</h3>
+                        <ul>
+                            <li></li>
+                            <li>カエスラ、パイラマリーナが主に食べられている。</li>
+                            <li>食べ物に直接触れてはいけない。</li>
+                            <li>手首から先は必ずテーブルの上に置く。</li>
+                        </ul>
+
+                        <h3>マナー</h3>
+                        <ul>
+                            <li>派手な服装は避けること。</li>
+                            <li>一人歩きは避け、人通りの少ない場所にはいかない。</li>
+                        </ul>
+
+                        <h3>観光名所</h3>
+                        <ul>
+                            <li>イースター島</li>
+                            <li>パルパライン</li>
+                            <li>アンデスの道路</li>
+                            <li>チロエの教会群</li>
+                        </ul>
+
+                    `
+                    
+                },
+                brazil: {
+                    name: 'ブラジル',
+                    details: `
+                        <h3>基本情報</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 2,164億人</li>
+                            <li><strong>面積:</strong> 8,510,000㎢</li>
+                            <li><strong>首都:</strong> ブラジリア</li>
+                            <li><strong>言語:</strong> ポルトガル語</li>
+                            <li><strong>主な宗教:</strong>カトリック</li>
+                        </ul>
+
+                        <h3>生活</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>食事</h3>
+                        <ul>
+                            <li>コシーニャ、パルミット、シュラスコ、アラジェが主に食べられている。</li>
+                            <li>食べ物に直接触れてはいけない(サンドイッチでさえも、ナイフやフォークを使う)。</li>
+                            <li>スマホは机の上に置かない。</li>
+                        </ul>
+
+                        <h3>マナー</h3>
+                        <ul>
+                            <li>トイレで汚れた紙は流さず、ごみ箱に捨てる。</li>
+                            <li>夜間の外出は控え、複数人で行動する。</li>
+                        </ul>
+
+                        <h3>観光名所</h3>
+                        <ul>
+                            <li>コルゴバードの丘</li>
+                            <li>レンソイス</li>
+                            <li>サルバドール旧市街</li>
+                        </ul>
+
+                    `
+
+                },
+                colombia: {
+                    name: 'コロンビア',
+                    details: `
+                        <h3>基本情報</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 5,209万人</li>
+                            <li><strong>面積:</strong> 1,142,000㎢</li>
+                            <li><strong>首都:</strong> ボゴダ</li>
+                            <li><strong>言語:</strong> スペイン語</li>
+                            <li><strong>主な宗教:</strong>カトリック</li>
+                        </ul>
+
+                        <h3>生活</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>食事</h3>
+                        <ul>
+                            <li>エンパナーダ、アヒアコ、タマレスが主に食べらタマレスれている。</li>
+                            <li>食べ物は残さず食べる。</li>
+                            <li>昼が主食。</li>
+                        </ul>
+
+                        <h3>マナー</h3>
+                        <ul>
+                            <li>アイコンタクトが非常に大切。</li>
+                            <li>ガイドブックを持ち歩かない(目をつけられ、危ない)。</li>
+                        </ul>
+
+                        <h3>観光名所</h3>
+                        <ul>
+                            <li>塩の教会</li>
+                            <li>ラスハス教会</li>
+                            <li>プラサデボリバル</li>
+                        </ul>
+
+                    `
+
+                },
+                peru: {
+                    name: 'ペルー',
+                    details: `
+                        <h3>基本情報</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 3,435万人</li>
+                            <li><strong>面積:</strong> 1,285,000㎢</li>
+                            <li><strong>首都:</strong> リマ</li>
+                            <li><strong>言語:</strong> スペイン語</li>
+                            <li><strong>主な宗教:</strong>ローマカトリック</li>
+                        </ul>
+
+                        <h3>生活</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>食事</h3>
+                        <ul>
+                            <li>セビーチェ、ロモサルタード、インカコーラが主に食べられている。</li>
+                            <li>ナイフは右手、フォークは左手。</li>
+                            <li>料理は少し残すのではなく、すべて食べる。</li>
+                        </ul>
+
+                        <h3>マナー</h3>
+                        <ul>
+                            <li>宗教施設や伝統的な祭りの場では、肌の露出は控える。</li>
+                        </ul>
+
+                        <h3>観光名所</h3>
+                        <ul>
+                            <li>マチュピチュ</li>
+                            <li>クスコ</li>
+                            <li>ナスカの地上絵</li>
+                        </ul>
+
+                    `
+
+                }
+            };
+
+            // 国を選択した際の処理
+            countryDropdown.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    e.preventDefault();
+                    const selectedCountry = e.target.getAttribute('data-country');
+                    if (selectedCountry && countryData[selectedCountry]) {
+                        const data = countryData[selectedCountry];
+                        countryName.textContent = data.name;
+                        countryDetails.innerHTML = data.details;
+
+                        // 国情報セクションを表示
+                        countryInfo.style.display = 'block';
+                    } else {
+                        countryInfo.style.display = 'none'; // 国情報セクションを隠す
+                    }
+                }
+            });
+        });
+    </script>
+
+    <style>
+        /* 国情報ページのスタイル */
+        #info-container {
+            max-width: 800px;
+            margin: 100px auto;
+            background-color: var(--color-base);
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: var(--color-text);
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: var(--color-text);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .trigger-drop {
+            padding: 10px;
+            background-color: var(--color-accent);
+            color: var(--color-base);
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .drop {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background: var(--color-base);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .drop {
+            display: block;
+        }
+
+        .drop li {
+            list-style: none;
+            padding: 10px;
+        }
+
+        .drop li a {
+            display: block;
+            padding: 10px;
+            color: var(--color-text);
+            transition: background-color 0.3s;
+        }
+
+        .drop li a:hover {
+            background-color: var(--color-accent);
+            color: var(--color-base);
+        }
+    </style>
+</body>
+</html>
+

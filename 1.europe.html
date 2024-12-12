@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界地図ultra</title>
+    <link rel="stylesheet" href="kaken2.2.css"> <!-- 外部CSSファイルをリンク -->
+</head>
+<body>
+    <nav id="navigation">
+        <a href="1.kaken2.1.html" class="logo">世界地図ultra<span>+</span></a>
+        <ul class="links">
+            <li><a href="1.kaken2.1.html">ホーム</a></li>
+            <li><a href="https://www.google.com/maps" target="_blank">世界地図</a></li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">クイズ<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.africa_quiz.html">アフリカ</a></li>
+                    <li><a href="1.asia_quiz.html">アジア</a></li>
+                    <li><a href="1.europe_quiz.html_">ヨーロッパ</a></li>
+                    <li><a href="1.north-america_quiz.html">北アメリカ</a></li>
+                    <li><a href="1.south-america_quiz.html">南アメリカ</a></li>
+                    <li><a href="1.oceania_quiz.html">オセアニア</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">国<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.africa.html">アフリカ</a></li>
+                    <li><a href="1.asia.html">アジア</a></li>
+                    <li><a href="1.europe.html">ヨーロッパ</a></li>
+                    <li><a href="1.north_america.html">北アメリカ</a></li>
+                    <li><a href="1.south_america.html">南アメリカ</a></li>
+                    <li><a href="1.oseania.html">オセアニア</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Language<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.kaken2.1.html">1.日本語</a></li>
+                    <li><a href="2.kaken2.1.html">2.English (U.S.)</a></li>
+                    <li><a href="3.kaken2.1.html">3.English (UK)</a></li>
+                    <li><a href="4.kaken2.1.html">4.中文</a></li>
+                    <li><a href="5.kaken2.1.html">5.Русский (язык)</a></li>
+                    <li><a href="">オセアニア</a></li>
+                </ul>
+            </li>
+            <li><a href="#">ランキング</a></li>
+        </ul>
+    </nav>
+    
+    <div id="info-container">
+        <h1>ヨーロッパ地域の国情報</h1>
+        <p>以下の国から選んでください:</p>
+
+        <!-- ドロップダウンメニュー -->
+        <div class="dropdown">
+            <a href="#" class="trigger-drop">国を選択<i class="arrow"></i></a>
+            <ul class="drop" id="country-dropdown">
+                <li><a href="#" data-country="holland">オランダ</a></li>
+                <li><a href="#" data-country="switzerland">スイス</a></li>
+                <li><a href="#" data-country="austria">オーストリア</a></li>
+                <li><a href="#" data-country="sweden">スウェーデン</a></li>
+                <li><a href="#" data-country="russia">ロシア</a></li>
+            </ul>
+        </div>
+
+        <!-- 国情報セクション -->
+        <div id="country-info" style="display:none;">
+            <h2 id="country-name"></h2>
+            <div id="country-details"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const countryDropdown = document.getElementById('country-dropdown');
+            const countryInfo = document.getElementById('country-info');
+            const countryName = document.getElementById('country-name');
+            const countryDetails = document.getElementById('country-details');
+
+            // 国情報データ
+            const countryData = {
+                holland: {
+                    name: 'オランダ',
+                    details: `
+                        <h3>基本情報</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 1800万人</li>
+                            <li><strong>面積:</strong> 41,500㎢</li>
+                            <li><strong>首都:</strong> アステルダム</li>
+                            <li><strong>言語:</strong> オランダ語</li>
+                            <li><strong>主な宗教:</strong> キリスト教</li>
+                        </ul>
+
+                        <h3>生活</h3>
+                        <ul>
+                            <li>オランダ人は解放的な多様性への寛大さがある。</li>
+                            <li>また、国民性は、質素、倹約、勤勉である。</li>
+                            <li>また、水道水は石灰質が強く、ガス入り、ガスなしがあるため、お腹が弱い人などは飲む際に注意が必要である。</li>
+                        </ul>
+
+                        <h3>食事</h3>
+                        <ul>
+                            <li>朝、昼はパン、チーズ、ハムなど簡単なものを取り、夜には温かいものを食べる。</li>
+                            <li>ジャガイモや野菜を煮込んでつぶし、されに盛り付けるスタンポッドなどがある。</li>
+                            <li></li>また、乾燥のグリーンピースを戻し、ベーコンや野菜とともに煮込むエルテンスープがある。
+                        </ul>
+
+                        <h3>マナー</h3>
+                        <ul>
+                            <li>レストランではチップとして料金の10%~15%のチップを払う。</li>
+                            <li>また、トイレは1人20~50セントかかる。</li>
+                            <li>比較的治安はよいが、すりや置き引きは多発しているため、お土産店などでは十分に注意するべきである。</li>
+                        </ul>
+
+                        <h3>観光名所</h3>
+                        <ul>
+                            <li>アステルダム：運河クルーズが有名な運河に囲まれた街。</li>
+                            <li>キューケンホフ：世界最大規模のフラワーパークチューリップの開花時期に合わせて期間限定で開園する。</li>
+                        </ul>
+                    `
+                },
+
+                switzerland: {
+                    name: 'スイス',
+                    details: `
+                        <h3>基本情報</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 885万人</li>
+                            <li><strong>面積:</strong> 4,100㎢</li>
+                            <li><strong>首都:</strong> ベルン</li>
+                            <li><strong>言語:</strong> ドイツ語、フランス語、イタリア語、英語</li>
+                            <li><strong>主な宗教:</strong> キリスト教</li>
+                        </ul>
+                        
+                        <h3>生活</h3>
+                        <ul>
+                            <li>物価が高いが、その背景には高い人件費、消費税、充実した福祉や国の農業を保護する政策などがある。</li>
+                            <li>また、治安はかなり安定しているが、都市部ではすりなどの軽犯罪が多発するため注意が必要である。</li>
+                        </ul>
+
+                        <h3>食事</h3>
+                        <ul>
+                            <li>スイスは「チーズ大国」とも評され、チーズなどの乳製品が大人気。</li>   
+                            <li>また、主食はパンでありホテルに宿泊すれば、必ず提供され、無料で追加注文をすることが可能。</li>
+                        </ul>
+
+                        <h3>マナー</h3>
+                        <ul>
+                            <li>チップの習慣は強くないため、お気持ち程度に残すのが良い。</li>
+                            <li>また、レストランやタクシーは請求額の10%ほどを目安にするとよい。</li>
+                            <li>スイスでは時間厳守の行動が大事であり、5分でも遅れる際は連絡を入れたほうがよい。</li>  
+                        </ul>
+
+                        <h3>観光名所y</h3>
+                        <ul>
+                            <li>マイエンフェルト：「アルプスの少女ハイジ」の舞台として有名な村。</li>
+                            <li>ハイジ村では美しい自然を見ることができる。</li>
+                        </ul>
+                    `
+                },
+                austria: {
+                    name: 'オーストリア',
+                    details: `
+                        <h3>基本情報</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 913.2万人</li>
+                            <li><strong>面積:</strong> 83,870㎢</li>
+                            <li><strong>首都:</strong> ウィーン</li>
+                            <li><strong>言語:</strong> ドイツ語</li>
+                            <li><strong>主な宗教:</strong> カトリック</li>
+                        </ul>
+                        
+                        <h3>生活</h3>
+                        <ul>
+                            <li>物価は特に突出して高い州があるわけではないが、一般に都市部は住居費が高めの傾向にある。</li>
+                            <li>また、治安は比較的に良いほうで、安全で住みやすい国といわれている。</li>
+                            <li>しかし、強盗、窃盗、詐欺などの犯罪は発生している。</li>
+                        </ul>
+
+                        <h3>食事</h3>
+                        <ul>
+                            <li>ウィーンを代表するウィンナーシュニッツェルが人気です。</li>
+                            <li>ウィンナーシュニッツェルは、たたいて柔らかくした子牛の肉を揚げ焼きにしたものであり、この料理の由来は19世紀の初めまでさかのぼるといわれている。</li>
+                        </ul>
+
+                        <h3>マナー</h3>
+                        <ul>
+                            <li>トイレには1人25~50セントほどのお金がかかり、タクシー料金の10%程度のチップを支払うとよい。</li>
+                            <li>また、オーストリアのレジでは「こんにちは」、「ありがとう」などの基本的な会話が必要になる。</li>
+                        </ul>
+
+                        <h3>観光名所</h3>
+                        <ul>
+                            <li>シュテファン大聖堂：ウィーンの中心に位置するシンボル。</li>
+                            <li>ロマネスク様式の境界として建設されたが、そのあとにハプスブルク家のルドルフ4世の命によって建設主要部分がゴシック様式に建て替えられた。</li>
+                            <li>シェーンブルン宮殿：ハプスブルグ家によって建てられた宮殿であり、豪華絢爛な宮殿。<li>
+                        </ul>
+                    `
+                },
+                sweden: {
+                    name: 'スウェーデン',
+                    details: `
+                        <h3>基本情報</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 1054万人</li>
+                            <li><strong>面積:</strong> 450,300㎢</li>
+                            <li><strong>首都:</strong> ストックホルム</li>
+                            <li><strong>言語:</strong> スウェーデン語、英語</li>
+                            <li><strong>主な宗教:</strong> ルーテル教会</li>
+                        </ul>
+                        <h3>生活</h3>
+                        <ul>
+                            <li>スウェーデンでは「フィーカ」という文化がある。これはいわゆるコーヒーブレイクのようなものであり、一日一回以上はフィーカの時間を取っている。</li>
+                            <li>休憩以上の意味を持っており、10時と15時にフィーカの時間を取っている人が多い。</li>
+                        </ul>
+                        <h3>食事</h3>
+                        <ul>
+                            <li>主食はジャガイモであり、マッシュポテトやフライドポテト、ゆでたりやいたりして、肉料理から魚料理まで様々な料理とともに食べられる。</li>
+                            <li>また、魚料理ではサーモンが代表的なものであり、サンドイッチにするなどの食べ方がある。</li>
+                        </ul>
+                        <h3>マナー</h3>
+                        <ul>
+                            <li>スウェーデンはプライバシーを大切にし、個人のスペースを尊重するため、個人的な質問を立て続けにすることは避けたほうが良い。</li>
+                            <li>また、スウェーデンでは時間厳守が重要視されているため、時間に余裕を持って行動するとよい。</li>
+                        </ul>
+
+                        <h3>観光名所</h3>
+                        <li>がラム・スタン：13世紀に築かれたストックホルム発祥の地。北欧雑貨のお店が多くある。</li>
+                        <li>ヴァーサ号博物館：1682年の処女航海でストックホルム港に沈没した王室の軍艦。</li>
+                        <li>沈没から33年後に引き上げられ、復元された実物の船が展示されている。</li>
+                    `
+                },
+                russia: {
+                    name: 'ロシア',
+                    details: `
+                        <h3>基本情報</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 1億4,615万人</li>
+                            <li><strong>面積:</strong> 1,709㎢</li>
+                            <li><strong>首都:</strong> モスクワ</li>
+                            <li><strong>言語:</strong> ロシア語</li>
+                            <li><strong>主な宗教:</strong> ロシア正教</li>
+                        </ul>
+
+                        <h3>生活</h3>
+                        <ul>
+                            <li>とてもまじめな性格の人が多く、愛想笑いをしない。</li>
+                            <li>また、時間にルーズで細かいことにこだわる人はあまりいない。</li>
+                            <li>冬は寒さが厳しいため、まずは防寒をすることが多い。</li>
+                        </ul>
+
+                        <h3>食事</h3>
+                        <ul>
+                            <li>質素で素朴で親しみやすい味で、麦やライ麦などの穀物、キノコ類、魚などを使ったスープやおかゆなどの煮込み料理が多い。</li>
+                            <li>辛い物や味の濃いものなどは少ない。</li>
+                            <li>また、ピクルスやジェムなどの冬に向けた保存食も発達している。</li>
+                        </ul>
+
+                        <h3>マナー</h3>
+                        <ul>
+                            <li>公共交通機関では妊娠中や年配の方には席を譲るのがマナー。</li>
+                            <li>人差し指で自分を指すのは「私」という意味。胸に手を置くのは「心から」、「正直」という意味がある。</li>
+                        </ul>
+
+                        <h3>観光名所</h3>
+                        <ul>
+                            <li>「モスクワ」赤の広場：約73,000㎢の広場であり、夕方以降では建造物がライトアップされる。</li>
+                            <li>「モスクワ」クレムリン：ダイヤモンド庫、武器庫などの観光スポットがある。</li>
+                    `
+                }
+            };
+
+            // 国を選択した際の処理
+            countryDropdown.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    e.preventDefault();
+                    const selectedCountry = e.target.getAttribute('data-country');
+                    if (selectedCountry && countryData[selectedCountry]) {
+                        const data = countryData[selectedCountry];
+                        countryName.textContent = data.name;
+                        countryDetails.innerHTML = data.details;
+
+                        // 国情報セクションを表示
+                        countryInfo.style.display = 'block';
+                    } else {
+                        countryInfo.style.display = 'none'; // 国情報セクションを隠す
+                    }
+                }
+            });
+        });
+    </script>
+
+    <style>
+        /* 国情報ページのスタイル */
+        #info-container {
+            max-width: 800px;
+            margin: 100px auto;
+            background-color: var(--color-base);
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: var(--color-text);
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: var(--color-text);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .trigger-drop {
+            padding: 10px;
+            background-color: var(--color-accent);
+            color: var(--color-base);
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .drop {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background: var(--color-base);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .drop {
+            display: block;
+        }
+
+        .drop li {
+            list-style: none;
+            padding: 10px;
+        }
+
+        .drop li a {
+            display: block;
+            padding: 10px;
+            color: var(--color-text);
+            transition: background-color 0.3s;
+        }
+
+        .drop li a:hover {
+            background-color: var(--color-accent);
+            color: var(--color-base);
+        }
+
+        #country-details {
+            white-space: pre-line;
+            text-align: left;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界地図ultra</title>
+    <link rel="stylesheet" href="kaken2.2.css"> <!-- 外部CSSファイルをリンク -->
+</head>
+<body>
+    <nav id="navigation">
+        <a href="1.kaken2.1.html" class="logo">世界地図ultra<span>+</span></a>
+        <ul class="links">
+            <li><a href="1.kaken2.1.html">ホーム</a></li>
+            <li><a href="https://www.google.com/maps" target="_blank">世界地図</a></li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">クイズ<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.africa_quiz.html">アフリカ</a></li>
+                    <li><a href="1.asia_quiz.html">アジア</a></li>
+                    <li><a href="1.europe_quiz.html_">ヨーロッパ</a></li>
+                    <li><a href="1.north-america_quiz.html">北アメリカ</a></li>
+                    <li><a href="1.south-america_quiz.html">南アメリカ</a></li>
+                    <li><a href="1.oceania_quiz.html">オセアニア</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">国<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.africa.html">アフリカ</a></li>
+                    <li><a href="1.asia.html">アジア</a></li>
+                    <li><a href="1.europe.html">ヨーロッパ</a></li>
+                    <li><a href="1.north_america.html">北アメリカ</a></li>
+                    <li><a href="1.south_america.html">南アメリカ</a></li>
+                    <li><a href="1.oseania.html">オセアニア</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Language<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.kaken2.1.html">1.日本語</a></li>
+                    <li><a href="2.kaken2.1.html">2.English (U.S.)</a></li>
+                    <li><a href="3.kaken2.1.html">3.English (UK)</a></li>
+                    <li><a href="4.kaken2.1.html">4.中文</a></li>
+                    <li><a href="5.kaken2.1.html">5.Русский (язык)</a></li>
+                    <li><a href="">オセアニア</a></li>
+                </ul>
+            </li>
+            <li><a href="#">ランキング</a></li>
+        </ul>
+    </nav>
+    
+    <div id="info-container">
+        <h1>北アメリカ地域の国情報</h1>
+        <p>以下の国から選んでください:</p>
+
+        <!-- ドロップダウンメニュー -->
+        <div class="dropdown">
+            <a href="#" class="trigger-drop">国を選択<i class="arrow"></i></a>
+            <ul class="drop" id="country-dropdown">
+                <li><a href="#" data-country="cuba">キューバ</a></li>
+                <li><a href="#" data-country="jamaica">ジャマイカ</a></li>
+                <li><a href="#" data-country="dominican">ドミニカ共和国</a></li>
+                <li><a href="#" data-country="haiti">ハイチ</a></li>
+                <li><a href="#" data-country="jamaica">ジャマイカ</a></li>
+            </ul>
+        </div>
+
+        <!-- 国情報セクション -->
+        <div id="country-info" style="display:none;">
+            <h2 id="country-name"></h2>
+            <div id="country-details"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const countryDropdown = document.getElementById('country-dropdown');
+            const countryInfo = document.getElementById('country-info');
+            const countryName = document.getElementById('country-name');
+            const countryDetails = document.getElementById('country-details');
+
+            // 国情報データ
+            const countryData = {
+                cuba: {
+                    name: 'キューバ',
+                    details: `
+                        <h3>基本情報</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 1,121万人</li>
+                            <li><strong>面積:</strong> 109,884㎢</li>
+                            <li><strong>首都:</strong> ハバナ</li>
+                            <li><strong>言語:</strong> スペイン語</li>
+                            <li><strong>主な宗教:</strong>原則自由</li>
+                        </ul>
+
+                        <h3>生活</h3>
+                        <ul>
+                            <li>渋滞がほとんどなく発展途上国にありがちな渋滞によるストレスは皆無。</li>
+                            <li>キューバではレンタカー公社から長期契約でレンタルしているのが一般的。</li>
+                        </ul>
+
+                        <h3>食事</h3>
+                        <ul>
+                            <li>キューバ人は最初にスープを飲み干してから他のおかずを食べ始める。</li>
+                            <li>フリホーレスという黒いインゲン豆のスープが家庭料理の定番。</li>
+                            <li>食事は社交的なイベントであり、食事中に会話や笑顔が重要視されるキューバ料理では、手を使って食べることが一般的。</li>
+                        </ul>
+
+                        <h3>マナー</h3>
+                        <ul>
+                            <li>キューバでは時間に対する柔軟性があり、約束の時間に遅れてもあまり問題視されない。</li>
+                        </ul>
+
+                        <h3>観光名所</h3>
+                        <ul>
+                            <li>ハバナ旧市街：「オールド・ハバナ」とも呼ばれる、キューバの首都ハバナの旧市街。元々スペイン人によって建設が始まった歴史があり、レトロな建物だけでなく、、街中を走るクラシッカーも見所の一つ。</li>
+                            <li>ヴィニャーレス渓谷：ハバナから日帰りできる距離にありながら、目を見張るほどの絶景が広がります。</li>
+                            <li>サン・ペドロ・デ・ラ・ロカ城：1997年に世界文化に登録された建築に賢固さと機能美を兼ね揃えたルネサンス方式が用いられている。</li>
+                        </ul>
+
+                    `
+                },
+                jamaica: {
+                    name: 'ジャマイカ',
+                    details: `
+                        <h3>基本情報</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 2,961,000万人</li>
+                            <li><strong>面積:</strong> 10,991㎢</li>
+                            <li><strong>首都:</strong> キングストン</li>
+                            <li><strong>言語:</strong> 英語</li>
+                            <li><strong>主な宗教:</strong> キリスト教</li>
+                        </ul>
+
+                        <h3>生活</h3>
+                        <ul>
+                            <li>ドレッドヘアは、様々な人がおしゃれとして楽しんでいるがファッションの意味合いだけではなく、一つの宗教の表れ。</li>
+                            <li>ジャマイカのアフリカ回帰運動（ラスタファリズム）では、人間の体を神殿として扱っており、自分の体に刃物を当ててはいけないという規律があり、髪の毛を伸ばしっぱなしにしている。</li>
+                        </ul>
+
+                        <h3>食事</h3>
+                        <ul>
+                            <li>栄養を重視し、蒸したバナナやイモ類が主食。</li>
+                            <li>そこに、アキー＆ソルトフィシュやチキンなどを添えるのが、定番のジャマイカ流朝食。</li>
+                            <li>ジャマイカでは肉を使った料理は、まだ言葉が話せない子供に与えるのは禁止されている。</li>
+                        </ul>
+
+                        <h3>マナー</h3>
+                        <ul>
+                            <li>レディーファーストが基本。</li>
+                            <li>話すときは相手の目を見て年配の方に敬意を払う。</li>
+                            <li>公共の場で走ると犯罪者に間違われるので、急がない走らない急かさない。</li>
+                            <li>公共の場での喫煙はNG。</li>                        
+                        </ul>
+                        <h3>観光名所</h3>
+                        <ul>
+                            <li>レゲエのスーパースター、ボブ・マーリー博物館：ボブ・マーリーが晩年の6年間を家族と共に過ごした家。マーリーの愛用品やレコードなどが掲示されている。</li>
+                            <li>ダンスリーバーフォール公園：ジャマイカにある数多くの滝の中でもっとも有名な滝。全長180mもある滝を登っていくのが人気。</li>
+                        </ul>
+                    `
+                },
+                dominican: {
+                    name: 'ドミニカ共和国',
+                    details: `
+                        <h3>基本情報</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 1,123万人</li>
+                            <li><strong>面積:</strong> 48,442㎢</li>
+                            <li><strong>首都:</strong> サントドミンゴ</li>
+                            <li><strong>言語:</strong> スペイン語</li>
+                            <li><strong>主な宗教:</strong> カトリック</li>
+                        </ul>
+
+                        <h3>生活</h3>
+                        <ul>
+                            <li>メレンゲ、バチャータソン、レゲトン、サルサなどの音楽が盛んで、国民的な音楽となっている。</li>
+                            <li>メレンゲフェスティバルが、毎月7月にサントドミンゴで開催され多くの芸術家の伝統的な絵画、彫刻、陶芸が展示され国内外から多くの観光客が訪れる。</li>
+                        </ul>
+
+                        <h3>食事</h3>
+                        <ul>
+                            <li>地中海料理やアフリカ料理、スペイン料理、インディオ料理が混ざった独特の料理があり、代表的なものはモフォンゴ、サンコーチョ、モロなどがある。</li>
+                        </ul>
+
+                        <h3>マナー</h3>
+                        <ul>
+                            <li>独立広場や国立霊廟には粛清を保つために衛兵が立番しているので、迷惑行為は慎むこと。</li>
+                            <li>国境及び軍事施設は写真撮影禁止。その他、礼拝堂等に禁止区域があるので撮影前に確認するように。</li>
+                        </ul>
+
+                        <h3>観光名所</h3>
+                        <ul>
+                            <li>バヴァロビーチ：ドミニカ共和国が誇るビーチリゾート地区。海水浴をしながらビーチ沿いのきれいなホテル群を眺めることができる。</li>
+                            <li>ホヨ・アズール：プンタカーナの洞窟の中のクリスタルブルーの水の泉。</li>
+                        </ul>
+                    `
+                },
+                haiti: {
+                    name: 'ハイチ',
+                    details: `
+                        <h3>基本情報</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 1,158万人</li>
+                            <li><strong>面積:</strong> 27,750㎢</li>
+                            <li><strong>首都:</strong> ポルトープランス</li>
+                            <li><strong>言語:</strong> フランス語、ハイチ・クレオール語</li>
+                            <li><strong>主な宗教:</strong> キリスト教、ブードゥー教等</li>
+                        </ul>
+                        <h3>生活</h3>
+                        <ul>
+                            <li>一年を通して半袖で過ごせる温暖な気候で丘や山が多く、田舎のほうだと公共の電気や水道が通っていないのがほとんど。</li>
+                            <li>ガスの代わりに炭を使い、照明はろうそくかオイルランプ、電気を必要とする場合発電機を使う。</li>
+                            <li>飲料水や生活水はガロンと呼ばれるプラスチックのタンクに湧き水や川の水を汲んできて使う。</li>
+                        </ul>
+
+                        <h3>食事</h3>
+                        <ul>
+                            <li>主食は人によって違いお米やパン、バナンなど。</li>
+                            <li>たいていはそれらに肉や魚を煮込んだソースをかけて食べる。</li>
+                        </ul>
+
+                        <h3>マナー</h3>
+                        <ul>
+                            <li>ハイチでは、食事をするときに食べ物を共有することが重要視されている。</li>
+                            <li>ハイチは宗教的な多様性があり、宗教行事や祭りは非常に重要でこれらの行事に対する尊重と参加が求められる。</li>
+                        </ul>
+
+                        <h3>観光名所</h3>
+                        <ul>
+                            <li>サン＝スーシ城：ハイチ独立当初の歴史的な建物が残っている一帯は、国立歴史公園として世界遺産に登録されている。</li>
+                            <li>ラパディ：美しいカリブ海で有名な観光地でマリンスポーツや様々なアクティビティが充実している。</li>
+                        </ul>
+                    `
+                },
+                jamaica: {
+                    name: 'ジャマイカ',
+                    details: `
+                        <h3>基本情報</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 約290万人</li>
+                            <li><strong>面積:</strong> 約1万4400平方キロメートル</li>
+                            <li><strong>首都:</strong> キングストン</li>
+                            <li><strong>言語:</strong> 英語</li>
+                            <li><strong>主な宗教:</strong> キリスト教</li>
+                        </ul>
+                        <h3>生活</h3>
+                        <ul>
+                            <li>リズム感あふれる音楽文化が特徴で、ボブ・マーリーのようなアーティストが有名です。</li>
+                        </ul>
+                        <h3>食事</h3>
+                        <ul>
+                            <li>ジャークチキンや、レッドストライプビールなどが人気です。</li>
+                        </ul>
+                        <h3>マナー</h3>
+                        <ul>
+                            <li>フレンドリーでオープンなコミュニケーションが求められます。</li>
+                        </ul>
+                    `
+                }
+            };
+
+            // 国を選択した際の処理
+            countryDropdown.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    e.preventDefault();
+                    const selectedCountry = e.target.getAttribute('data-country');
+                    if (selectedCountry && countryData[selectedCountry]) {
+                        const data = countryData[selectedCountry];
+                        countryName.textContent = data.name;
+                        countryDetails.innerHTML = data.details;
+
+                        // 国情報セクションを表示
+                        countryInfo.style.display = 'block';
+                    } else {
+                        countryInfo.style.display = 'none'; // 国情報セクションを隠す
+                    }
+                }
+            });
+        });
+    </script>
+
+    <style>
+        /* 国情報ページのスタイル */
+        #info-container {
+            max-width: 800px;
+            margin: 100px auto;
+            background-color: var(--color-base);
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: var(--color-text);
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: var(--color-text);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .trigger-drop {
+            padding: 10px;
+            background-color: var(--color-accent);
+            color: var(--color-base);
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .drop {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background: var(--color-base);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .drop {
+            display: block;
+        }
+
+        .drop li {
+            list-style: none;
+            padding: 10px;
+        }
+
+        .drop li a {
+            display: block;
+            padding: 10px;
+            color: var(--color-text);
+            transition: background-color 0.3s;
+        }
+
+        .drop li a:hover {
+            background-color: var(--color-accent);
+            color: var(--color-base);
+        }
+    </style>
+</body>
+</html>
+

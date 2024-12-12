@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界地図ultra</title>
+    <link rel="stylesheet" href="kaken2.2.css"> <!-- 外部CSSファイルをリンク -->
+</head>
+<body>
+    <nav id="navigation">
+        <a href="1.kaken2.1.html" class="logo">世界地図ultra<span>+</span></a>
+        <ul class="links">
+            <li><a href="1.kaken2.1.html">ホーム</a></li>
+            <li><a href="https://www.google.com/maps" target="_blank">世界地図</a></li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">クイズ<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.africa_quiz.html">アフリカ</a></li>
+                    <li><a href="1.asia_quiz.html">アジア</a></li>
+                    <li><a href="1.europe_quiz.html">ヨーロッパ</a></li>
+                    <li><a href="1.north-america_quiz.html">北アメリカ</a></li>
+                    <li><a href="1.south-america_quiz.html">南アメリカ</a></li>
+                    <li><a href="1.oceania_quiz.html">オセアニア</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">国<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.africa.html">アフリカ</a></li>
+                    <li><a href="1.asia.html">アジア</a></li>
+                    <li><a href="1.europe.html">ヨーロッパ</a></li>
+                    <li><a href="1.north_america.html">北アメリカ</a></li>
+                    <li><a href="1.south_america.html">南アメリカ</a></li>
+                    <li><a href="1.oseania.html">オセアニア</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Language<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.kaken2.1.html">1.日本語</a></li>
+                    <li><a href="2.kaken2.1.html">2.English (U.S.)</a></li>
+                    <li><a href="3.kaken2.1.html">3.English (UK)</a></li>
+                    <li><a href="4.kaken2.1.html">4.中文</a></li>
+                    <li><a href="5.kaken2.1.html">5.Русский (язык)</a></li>
+                    <li><a href="">オセアニア</a></li>
+                </ul>
+            </li>
+            <li><a href="#">ランキング</a></li>
+        </ul>
+    </nav>
+    
+    <div id="quiz-container">
+        <h1>アジア地域クイズ</h1>
+        <p>以下の国から選んでください:</p>
+
+        <!-- ドロップダウンメニュー -->
+        <div class="dropdown">
+            <a href="#" class="trigger-drop">国を選択<i class="arrow"></i></a>
+            <ul class="drop" id="country-dropdown">
+                <li><a href="#" data-country="japan">日本</a></li>
+                <li><a href="#" data-country="china">中国</a></li>
+                <li><a href="#" data-country="india">インド</a></li>
+                <li><a href="#" data-country="south-korea">韓国</a></li>
+                <li><a href="#" data-country="thailand">タイ</a></li>
+            </ul>
+        </div>
+
+        <!-- クイズエリア -->
+        <div id="quiz-section" style="display:none;">
+            <h2 id="quiz-question"></h2>
+            <ul id="quiz-options" class="quiz-options"></ul>
+            <div id="quiz-result"></div>
+            <button id="next-quiz" style="display:none;">次のクイズへ</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const countryDropdown = document.getElementById('country-dropdown');
+            const quizSection = document.getElementById('quiz-section');
+            const quizQuestion = document.getElementById('quiz-question');
+            const quizOptions = document.getElementById('quiz-options');
+            const quizResult = document.getElementById('quiz-result');
+            const nextQuizButton = document.getElementById('next-quiz');
+
+            // クイズデータ
+            const quizzes = {
+                japan: [
+                    {
+                        question: '日本の首都はどこですか？',
+                        options: ['東京', '大阪', '京都', '名古屋'],
+                        correctAnswer: '東京'
+                    },
+                    {
+                        question: '日本の国技は何ですか？',
+                        options: ['柔道', '相撲', '空手', '剣道'],
+                        correctAnswer: '相撲'
+                    },
+                    {
+                        question: '日本の国旗に描かれている色は何ですか？',
+                        options: ['赤と白', '青と白', '緑と白', '黒と白'],
+                        correctAnswer: '赤と白'
+                    }
+                ],
+                china: [
+                    {
+                        question: '中国の首都はどこですか？',
+                        options: ['上海', '北京', '広州', '香港'],
+                        correctAnswer: '北京'
+                    },
+                    {
+                        question: '中国の長い川は何ですか？',
+                        options: ['黄河', '長江', '珠江', '松花江'],
+                        correctAnswer: '長江'
+                    },
+                    {
+                        question: '中国で有名な料理は何ですか？',
+                        options: ['寿司', 'パスタ', '餃子', 'タコス'],
+                        correctAnswer: '餃子'
+                    }
+                ],
+                india: [
+                    {
+                        question: 'インドの首都はどこですか？',
+                        options: ['ニューデリー', 'ムンバイ', 'バンガロール', 'コルカタ'],
+                        correctAnswer: 'ニューデリー'
+                    },
+                    {
+                        question: 'インドで最も話されている言語は何ですか？',
+                        options: ['ヒンディー語', '英語', 'タミル語', 'ベンガル語'],
+                        correctAnswer: 'ヒンディー語'
+                    },
+                    {
+                        question: 'インドの国花は何ですか？',
+                        options: ['ロータス', 'ジャスミン', 'バラ', 'ひまわり'],
+                        correctAnswer: 'ロータス'
+                    }
+                ],
+                'south-korea': [
+                    {
+                        question: '韓国の首都はどこですか？',
+                        options: ['ソウル', '釜山', '仁川', '大邱'],
+                        correctAnswer: 'ソウル'
+                    },
+                    {
+                        question: '韓国の代表的な料理は何ですか？',
+                        options: ['寿司', 'キムチ', 'フォー', '餃子'],
+                        correctAnswer: 'キムチ'
+                    },
+                    {
+                        question: '韓国の伝統的な衣装は何ですか？',
+                        options: ['チマチョゴリ', 'キモノ', 'サリー', 'ダフル'],
+                        correctAnswer: 'チマチョゴリ'
+                    }
+                ],
+                thailand: [
+                    {
+                        question: 'タイの首都はどこですか？',
+                        options: ['バンコク', 'チェンマイ', 'プーケット', 'アユタヤ'],
+                        correctAnswer: 'バンコク'
+                    },
+                    {
+                        question: 'タイの有名な祭りは何ですか？',
+                        options: ['ソンクラーン', 'ディワリ', 'ハロウィン', 'クリスマス'],
+                        correctAnswer: 'ソンクラーン'
+                    },
+                    {
+                        question: 'タイで使われている通貨は何ですか？',
+                        options: ['バーツ', 'ドル', 'ユーロ', 'ポンド'],
+                        correctAnswer: 'バーツ'
+                    }
+                ]
+            };
+
+            let currentCountry;
+            let currentQuizIndex = 0;
+
+            // 国を選択した際の処理
+            countryDropdown.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    e.preventDefault();
+                    const selectedCountry = e.target.getAttribute('data-country');
+                    if (selectedCountry && quizzes[selectedCountry]) {
+                        currentCountry = selectedCountry;
+                        currentQuizIndex = 0; // クイズインデックスをリセット
+                        loadQuiz();
+                    } else {
+                        quizSection.style.display = 'none'; // クイズセクションを隠す
+                    }
+                }
+            });
+
+            function loadQuiz() {
+                const quizData = quizzes[currentCountry][currentQuizIndex];
+                quizQuestion.textContent = quizData.question;
+
+                // 選択肢をリセットして追加
+                quizOptions.innerHTML = '';
+                quizData.options.forEach(option => {
+                    const li = document.createElement('li');
+                    const button = document.createElement('button');
+                    button.textContent = option;
+                    button.classList.add('quiz-option');
+                    button.setAttribute('data-answer', option);
+                    li.appendChild(button);
+                    quizOptions.appendChild(li);
+
+                    // 選択肢をクリックした際の処理
+                    button.addEventListener('click', () => {
+                        if (option === quizData.correctAnswer) {
+                            quizResult.innerHTML = '<p>正解！おめでとうございます！</p>';
+                        } else {
+                            quizResult.innerHTML = '<p>残念、不正解です。</p>';
+                        }
+                        nextQuizButton.style.display = 'block'; // 次のクイズボタンを表示
+                    });
+                });
+
+                // クイズセクションを表示
+                quizSection.style.display = 'block';
+                quizResult.innerHTML = ''; // 結果をリセット
+                nextQuizButton.style.display = 'none'; // 次のクイズボタンを隠す
+            }
+
+            // 次のクイズへボタンの処理
+            nextQuizButton.addEventListener('click', () => {
+                currentQuizIndex++;
+                if (currentQuizIndex < quizzes[currentCountry].length) {
+                    loadQuiz();
+                } else {
+                    quizResult.innerHTML = '<p>クイズが終了しました！お疲れ様でした。</p>';
+                    quizSection.style.display = 'none'; // クイズセクションを隠す
+                    nextQuizButton.style.display = 'none'; // 次のクイズボタンを隠す
+                }
+            });
+        });
+    </script>
+
+    <style>
+        /* クイズページのスタイル */
+        #quiz-container {
+            max-width: 800px;
+            margin: 100px auto;
+            background-color: var(--color-base);
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: var(--color-text);
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: var(--color-text);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .trigger-drop {
+            padding: 10px;
+            background-color: var(--color-accent);
+            color: var(--color-base);
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .drop {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background: var(--color-base);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .drop {
+            display: block;
+        }
+
+        .drop li {
+            list-style: none;
+            padding: 10px;
+        }
+
+        .drop li a {
+            display: block;
+            padding: 10px;
+            color: var(--color-text);
+            transition: background-color 0.3s;
+        }
+
+        .drop li a:hover {
+            background-color: var(--color-accent);
+            color: var(--color-base);
+        }
+
+        .quiz-options {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            padding: 10px;
+            background-color: var(--color-accent);
+            color: var(--color-base);
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .quiz-option:hover {
+            background-color: lighten(var(--color-accent), 20%);
+        }
+
+        #quiz-result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+        }
+    </style>
+</body>
+</html>

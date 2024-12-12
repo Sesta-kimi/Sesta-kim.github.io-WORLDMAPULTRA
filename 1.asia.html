@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界地図ultra</title>
+    <link rel="stylesheet" href="kaken2.2.css"> <!-- 外部CSSファイルをリンク -->
+</head>
+<body>
+    <nav id="navigation">
+        <a href="1.kaken2.1.html" class="logo">世界地図ultra<span>+</span></a>
+        <ul class="links">
+            <li><a href="1.kaken2.1.html">ホーム</a></li>
+            <li><a href="https://www.google.com/maps" target="_blank">世界地図</a></li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">クイズ<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.africa_quiz.html">アフリカ</a></li>
+                    <li><a href="1.asia_quiz.html">アジア</a></li>
+                    <li><a href="1.europe_quiz.html_">ヨーロッパ</a></li>
+                    <li><a href="1.north-america_quiz.html">北アメリカ</a></li>
+                    <li><a href="1.south-america_quiz.html">南アメリカ</a></li>
+                    <li><a href="1.oceania_quiz.html">オセアニア</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">国<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.africa.html">アフリカ</a></li>
+                    <li><a href="1.asia.html">アジア</a></li>
+                    <li><a href="1.europe.html">ヨーロッパ</a></li>
+                    <li><a href="1.north_america.html">北アメリカ</a></li>
+                    <li><a href="1.south_america.html">南アメリカ</a></li>
+                    <li><a href="1.oseania.html">オセアニア</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Language<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.kaken2.1.html">1.日本語</a></li>
+                    <li><a href="2.kaken2.1.html">2.English (U.S.)</a></li>
+                    <li><a href="3.kaken2.1.html">3.English (UK)</a></li>
+                    <li><a href="4.kaken2.1.html">4.中文</a></li>
+                    <li><a href="5.kaken2.1.html">5.Русский (язык)</a></li>
+                    <li><a href="">オセアニア</a></li>
+                </ul>
+            </li>
+            <li><a href="#">ランキング</a></li>
+        </ul>
+    </nav>
+    
+    <div id="info-container">
+        <h1>アジア地域の国情報</h1>
+        <p>以下の国から選んでください:</p>
+
+        <!-- ドロップダウンメニュー -->
+        <div class="dropdown">
+            <a href="#" class="trigger-drop">国を選択<i class="arrow"></i></a>
+            <ul class="drop" id="country-dropdown">
+                <li><a href="#" data-country="turkey">トルコ</a></li>
+                <li><a href="#" data-country="indonesia">インドネシア</a></li>
+                <li><a href="#" data-country="qatar">カタール</a></li>
+                <li><a href="#" data-country="philippines">フィリピン</a></li>
+                <li><a href="#" data-country="israel">イスラエル</a></li>
+            </ul>
+        </div>
+
+        <!-- 国情報セクション -->
+        <div id="country-info" style="display:none;">
+            <h2 id="country-name"></h2>
+            <div id="country-details"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const countryDropdown = document.getElementById('country-dropdown');
+            const countryInfo = document.getElementById('country-info');
+            const countryName = document.getElementById('country-name');
+            const countryDetails = document.getElementById('country-details');
+
+            // 国情報データ
+            const countryData = {
+                turkey: {
+                    name: 'トルコ',
+                    details: `
+                        <h3>基本情報</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 8,537万人</li>
+                            <li><strong>面積:</strong> 783.600㎢</li>
+                            <li><strong>首都:</strong> アアンカラ/li>
+                            <li><strong>言語:</strong> トルコ語</li>
+                            <li><strong>主な宗教:</strong> イスラム教</li>
+                        </ul>
+
+                        <h3>生活</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>食事</h3>
+                        <ul>
+                            <li>ケバブやトルコアイスが有名です。</li>
+                            <li>食べ物が口に入っている状態でしゃべるのはマナー違反</li>
+                            <li>食事中に鼻をかむことや、歯を爪楊枝でいじることは失礼。</li>
+                        </ul>
+
+                        <h3>マナー</h3>
+                        <ul>
+                            <li>イスラム教信者に豚肉の入った料理を進めてはいけない。</li>
+                            <li>寺院では、肌や髪の露出する服装はNG。</li>
+                            <li>お年寄り優先。</li>
+                            <li>人差し指と親指で「0」の形を作るのは同性愛の証。</li>
+                            <li>舌打ちは解雇という意味。</li>
+                            <li>会話中や公共の集まりでガムをかむのは失礼。</li>
+                        </ul>
+
+                        <h3>観光名所</h3>
+                        <ul>
+                            <li>カッパドギア</li>
+                            <li>イスタンブール</li>
+                            <li>パムッカレ</li>
+                            <li>エフェス</li>
+                        </ul>
+                    `
+                },
+                indonesia: {
+                    name: 'インドネシア',
+                    details: `
+                        <h3>基本情報</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 2.775億人</li>
+                            <li><strong>面積:</strong> 1,905,000㎢</li>
+                            <li><strong>首都:</strong> ジャカルタ</li>
+                            <li><strong>言語:</strong> インドネシア語</li>
+                            <li><strong>主な宗教:</strong> イスラム教</li>
+                        </ul>
+
+                        <h3>生活</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>食事</h3>
+                        <ul>
+                            <li>レンダン牛肉、バクソ肉団子スープ、サンバルソースが有名。</li>
+                            <li>器を持ち上げて食べない。</li>
+                            <li>右手で食べる。</li>
+                        </ul>
+
+                        <h3>マナー</h3>
+                        <ul>
+                            <li>イスラム教のためアルコールと豚肉は禁止されている。</li>
+                            <li>左手は不浄とされているため、握手や物の受け渡しには右手を使用する。</li>
+                            <li>公衆の面前で過度なスキンシップは控える。</li>
+                            <li>頭は神聖な部位とされているため、触らないようにする。</li>
+                        </ul>
+
+                        <h3>観光名所</h3>
+                        <ul>
+                            <li>スマトラ島</li>
+                            <li>バリ島</li>
+                            <li>コモド国立公園</li>
+                        </ul>
+                        `
+                },
+                qatar: {
+                    name: 'カタール',
+                    details: `
+                        <h3>基本情報</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 271.6万人</li>
+                            <li><strong>面積:</strong> 11.570㎢</li>
+                            <li><strong>首都:</strong> ドーハ</li>
+                            <li><strong>言語:</strong> アラビア語</li>
+                            <li><strong>主な宗教:</strong> イスラム教</li>
+                        </ul>
+
+                        <h3>生活</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>食事</h3>
+                        <ul>
+                            <li>マグブース、ビリヤニ、ラムチョップが有名です。</li>
+                            <li>多くの食べ物を手で食べることがほとんどのため、食事前の手洗いは重要。</li>
+                        </ul>
+
+                        <h3>マナー</h3>
+                        <ul>
+                            <li>女性は肌の露出が多い服装、体系がはっきり現れる服装は避ける。</li>
+                            <li>男性は可能な限り半ズボンは避ける。</li>
+                            <li>アルコールや豚肉は禁止。</li>
+                        </ul>
+
+                        <h3>観光名所</h3>
+                        <ul>
+                            <li>ブルーモスク</li>
+                            <li>カタール博物館</li>
+                            <li>スークワーキフ</li>
+                            <li>砂漠</li>
+                        </ul>
+                        `
+                },
+                philippines: {
+                    name: 'フィリピン',
+                    details:  `
+                        <h3>基本情報</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 1.173億人</li>
+                            <li><strong>面積:</strong> 300,000㎢</li>
+                            <li><strong>首都:</strong> マニラ</li>
+                            <li><strong>言語:</strong> タガログ語、英語</li>
+                            <li><strong>主な宗教:</strong> イスラム教</li>
+                        </ul>
+
+                        <h3>生活</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>食事</h3>
+                        <ul>
+                            <li>レチョンハブク、シシグ、シニガンが有名。</li>
+                            <li>一般的に大皿で出てくるため、各自お皿に取り分けられる。</li>
+                            <li>その際、上司や高齢の人からとるのがマナー。</li>
+                            <li>始めてみる料理を勧められた際は断らずに食べてみるとよい。</li>
+                        </ul>
+
+                        <h3>マナー</h3>
+                        <ul>
+                            <li>横断歩道を渡るときは車優先。</li>
+                            <li>トイレットペーパーは流してはいけない。</li>
+                            <li>チップは一般的に請求金額の10%~20%程度。</li>
+                        </ul>
+
+                        <h3>観光名所</h3>
+                        <ul>
+                            <li>マクタン島</li>
+                            <li>マカティ</li>
+                            <li>ビガン歴史都市</li>
+                        </ul>
+                        `
+                },
+                israel: {
+                    name: 'イスラエル',
+                    details:  `
+                        <h3>基本情報</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 975.7万人</li>
+                            <li><strong>面積:</strong> 22,140㎢</li>
+                            <li><strong>首都:</strong> エルサレム</li>
+                            <li><strong>言語:</strong> ヘブライ語</li>
+                            <li><strong>主な宗教:</strong> ユダヤ教</li>
+                        </ul>
+
+                        <h3>生活</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>食事</h3>
+                        <ul>
+                            <li>ファラフェル、シシャクシューカ、シャワルマ、サビッチが有名。/li>
+                            <li>食べてよい動物は基本草食動物。</li>
+                            <li>エビ、カキ、タコは食べてはいけない。</li>
+                        </ul>
+
+                        <h3>マナー</h3>
+                        <ul>
+                            <li>金曜の日没から土曜の日没まで何もしてはいけない決まりがある。</li>
+                            <li>その際、一部を除いて公共交通機関は運休になる。</li>
+                            <li>また一部の方は39種類の禁止事項を守られており、例えば「耕す」「蒔く」「壊す」「書く」「火をつける」などの行為を一切行わない。</li>
+                        </ul>
+
+                        <h3>観光名所</h3>
+                        <ul>
+                            <li>嘆きの壁</li>
+                            <li>ナザレ</li>
+                            <li>死海</li>
+                            <li>マサダ</li>
+                        </ul>
+                        `
+                }
+            };
+
+            // 国を選択した際の処理
+            countryDropdown.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    e.preventDefault();
+                    const selectedCountry = e.target.getAttribute('data-country');
+                    if (selectedCountry && countryData[selectedCountry]) {
+                        const data = countryData[selectedCountry];
+                        countryName.textContent = data.name;
+                        countryDetails.innerHTML = data.details;
+
+                        // 国情報セクションを表示
+                        countryInfo.style.display = 'block';
+                    } else {
+                        countryInfo.style.display = 'none'; // 国情報セクションを隠す
+                    }
+                }
+            });
+        });
+    </script>
+
+    <style>
+        /* 国情報ページのスタイル */
+        #info-container {
+            max-width: 800px;
+            margin: 100px auto;
+            background-color: var(--color-base);
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: var(--color-text);
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: var(--color-text);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .trigger-drop {
+            padding: 10px;
+            background-color: var(--color-accent);
+            color: var(--color-base);
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .drop {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background: var(--color-base);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .drop {
+            display: block;
+        }
+
+        .drop li {
+            list-style: none;
+            padding: 10px;
+        }
+
+        .drop li a {
+            display: block;
+            padding: 10px;
+            color: var(--color-text);
+            transition: background-color 0.3s;
+        }
+
+        .drop li a:hover {
+            background-color: var(--color-accent);
+            color: var(--color-base);
+        }
+
+        #country-details {
+            white-space: pre-line;
+            text-align: left;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+    </style>
+</body>
+</html>

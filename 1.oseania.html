@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界地図ultra</title>
+    <link rel="stylesheet" href="kaken2.2.css"> <!-- 外部CSSファイルをリンク -->
+</head>
+<body>
+    <nav id="navigation">
+        <a href="1.kaken2.1.html" class="logo">世界地図ultra<span>+</span></a>
+        <ul class="links">
+            <li><a href="1.kaken2.1.html">ホーム</a></li>
+            <li><a href="https://www.google.com/maps" target="_blank">世界地図</a></li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">クイズ<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.africa_quiz.html">アフリカ</a></li>
+                    <li><a href="1.asia_quiz.html">アジア</a></li>
+                    <li><a href="1.europe_quiz.html_">ヨーロッパ</a></li>
+                    <li><a href="1.north-america_quiz.html">北アメリカ</a></li>
+                    <li><a href="1.south-america_quiz.html">南アメリカ</a></li>
+                    <li><a href="1.oceania_quiz.html">オセアニア</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">国<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.africa.html">アフリカ</a></li>
+                    <li><a href="1.asia.html">アジア</a></li>
+                    <li><a href="1.europe.html">ヨーロッパ</a></li>
+                    <li><a href="1.north_america.html">北アメリカ</a></li>
+                    <li><a href="1.south_america.html">南アメリカ</a></li>
+                    <li><a href="1.oseania.html">オセアニア</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Language<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.kaken2.1.html">1.日本語</a></li>
+                    <li><a href="2.kaken2.1.html">2.English (U.S.)</a></li>
+                    <li><a href="3.kaken2.1.html">3.English (UK)</a></li>
+                    <li><a href="4.kaken2.1.html">4.中文</a></li>
+                    <li><a href="5.kaken2.1.html">5.Русский (язык)</a></li>
+                    <li><a href="">オセアニア</a></li>
+                </ul>
+            </li>
+            <li><a href="#">ランキング</a></li>
+        </ul>
+    </nav>
+    
+    <div id="info-container">
+        <h1>オセアニア地域の国情報</h1>
+        <p>以下の国から選んでください:</p>
+
+        <!-- ドロップダウンメニュー -->
+        <div class="dropdown">
+            <a href="#" class="trigger-drop">国を選択<i class="arrow"></i></a>
+            <ul class="drop" id="country-dropdown">
+                <li><a href="#" data-country="australia">オーストラリア✓</a></li>
+                <li><a href="#" data-country="new-zealand">ニュージーランド</a></li>
+                <li><a href="#" data-country="tonga">トンガ</a></li>
+                <li><a href="#" data-country="solomon islands">ソロモン諸島</a></li>
+                <li><a href="#" data-country="palau">パラオ</a></li>
+            </ul>
+        </div>
+
+        <!-- 国情報セクション -->
+        <div id="country-info" style="display:none;">
+            <h2 id="country-name"></h2>
+            <div id="country-details"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const countryDropdown = document.getElementById('country-dropdown');
+            const countryInfo = document.getElementById('country-info');
+            const countryName = document.getElementById('country-name');
+            const countryDetails = document.getElementById('country-details');
+
+            // 国情報データ
+            const countryData = {
+                australia: {
+                    name: 'オーストラリア',
+                    details: `
+                        <h3>基本情報</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 2,664万人</li>
+                            <li><strong>面積:</strong> 7,741,000㎢</li>
+                            <li><strong>首都:</strong> キャンベラ</li>
+                            <li><strong>言語:</strong> 英語</li>
+                            <li><strong>主な宗教:</strong> キリスト教、カトリック、聖公会(多様)</li>
+                        </ul>
+
+                        <h3>生活</h3>
+                        <ul>
+                            <li>左側通行が基本</li>
+                            <li>風邪をひいてもマスクをしない</li>
+                        </ul>
+
+                        <h3>食事</h3>
+                        <ul>
+                            <li>ミートパイ,カンガルーミート、バラマンディ、ハンバーガーが主に食べられている。</li>
+                            <li>チップを払う習慣はない。</li>
+                            <li>スープや麺類は音を立てて食べない。</li>
+                            <li>食べ物が口に入っている状態でしゃべらない。</li>
+                        </ul>
+
+                        <h3>マナー</h3>
+                        <ul>
+                            <li>挨拶をされたら笑顔で返す。</li>
+                            <li>バスに乗る場合は、運転手に合図する。</li>
+                            <li>鼻をすする行為はマナー違反だが、ハンカチなどで抑えてするのはマナー違反ではない。</li>
+                        </ul>
+
+                        <h3>観光名所</h3>
+                        <ul>
+                            <li>ウルル</li>
+                            <li>グレートバリアリーフ</li>
+                            <li>グレートオーシャンロード</li>
+                            <li>シドニーオペラハウス</li>
+                        </ul>
+                    `
+                },
+                'new-zealand': {
+                    name: 'ニュージーランド',
+                    details: `
+                        <h3>基本情報</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 約90万人</li>
+                            <li><strong>面積:</strong> 約18,300㎢</li>
+                            <li><strong>首都:</strong> スバ</li>
+                            <li><strong>言語:</strong> 英語、フィジー語</li>
+                            <li><strong>主な宗教:</strong> キリスト教</li>
+                        </ul>
+
+                        <h3>生活</h3>
+                        <ul>
+                            <li>,</li>
+                            <li>,</li>
+                        </ul>
+
+                        <h3>食事</h3>
+                        <ul>
+                            <li>キングサーモン、フィッシュアンドチップス、ラム肉、グリーンマッスルが主に食べられている。</li>
+                            <li>お皿はテーブルに置いたまま食べる。</li>
+                            <li>「いただきます」、「ごちそうさま」を言う文化がない。</li>
+                        </ul>
+
+                        <h3>マナー</h3>
+                        <ul>
+                            <li>会話中は相手の目を見る。</li>
+                            <li>手を伸ばして物を取らない(他の人に取ってもらう)。</li>
+                            <li>トイレの使用後はドアを開けておく。</li>
+                        </ul>
+
+                        <h3>観光名所</h3>
+                        <ul>
+                            <li>オークランド</li>
+                            <li>ワイカト</li>
+                            <li>フィヨルドラン</li>
+                            <li>クイーンズタウン</li>
+                        </ul>
+                    `
+                },
+                tonga: {
+                    name: 'トンガ',
+                    details: `
+                        <h3>基本情報</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 10.78万人</li>
+                            <li><strong>面積:</strong> 748㎢</li>
+                            <li><strong>首都:</strong> アクアロファ</li>
+                            <li><strong>言語:</strong> 英語、トンガ語</li>
+                            <li><strong>主な宗教:</strong> キリスト教</li>
+                        </ul>
+
+                        <h3>生活</h3>
+                        <ul>
+                            <li>,</li>
+                            <li>,</li>
+                        </ul>
+
+                        <h3>食事</h3>
+                        <ul>
+                            <li>オタイカ、カパブル、カレ(カレー)が主に食べられている。</li>
+                            <li>決まった時間に食事をする文化がなく、お腹がすいたときや時間があるときに食べる。</li>
+                            <li>食卓ではなく、庭や屋外で食べることが多い。</li>
+                        </ul>
+
+                        <h3>マナー</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>観光名所</h3>
+                        <ul>
+                            <li>ホエールスイム</li>
+                            <li>アナフルケイブ</li>
+                            <li>ハアタフビーチ</li>
+                            <li>マ マプアバカ(ブローホール)</li>
+                        </ul>
+                    `
+                },
+                'solomon islands': {
+                    name: 'ソロモン諸島',
+                    details: `
+                        <h3>基本情報</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 74.04万人</li>
+                            <li><strong>面積:</strong> 28,900㎢</li>
+                            <li><strong>首都:</strong> ホニアラ</li>
+                            <li><strong>言語:</strong> 英語、ピジン語</li>
+                            <li><strong>主な宗教:</strong> ローマンカトリック、アングリカン</li>
+                        </ul>
+
+                        <h3>生活</h3>
+                        <ul>
+                            <li>,</li>
+                            <li>,</li>
+                        </ul>
+
+                        <h3>食事</h3>
+                        <ul>
+                            <li>キャッサバ、ココナッツジュース、ココナッツクマラが有名。</li>
+                        </ul>
+
+                        <h3>マナー</h3>
+                        <ul>
+                            <li>スリや置き引きに遭わないように手荷物は肌身離さない。</li>
+                            <li>レストランでは場所取りしない。</li>
+                        </ul>
+
+                        <h3>観光名所</h3>
+                        <ul>
+                            <li>ボネギビーチ</li>
+                            <li>ソロモン諸島国立博物館</li>
+                            <li>ホニアラセントラルマーケット</li>
+                        </ul>
+                    `
+                },
+                palau: {
+                    name: 'パラオ',
+                    details: `
+                        <h3>基本情報</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 1.806万人</li>
+                            <li><strong>面積:</strong> 458㎢</li>
+                            <li><strong>首都:</strong> ムゲルルムッド</li>
+                            <li><strong>言語:</strong> 英語、パラオ語</li>
+                            <li><strong>主な宗教:</strong> キリスト教</li>
+                        </ul>
+
+                        <h3>生活</h3>
+                        <ul>
+                            <li>,</li>
+                            <li>,</li>
+                        </ul>
+
+                        <h3>食事</h3>
+                        <ul>
+                            <li>タロイモ、マングローブガニ、コウモリスープが有名。</li>
+                        </ul>
+
+                        <h3>マナー</h3>
+                        <ul>
+                            <li>派手な服装は避ける。</li>
+                            <li>現地の人から勧められても、色物などを受け取らない。</li>
+                        </ul>
+
+                        <h3>観光名所</h3>
+                        <ul>
+                            <li>ミルキーウェイ</li>
+                            <li>セブンティアイランド</li>
+                            <li>ロックアイランド</li>
+                            <li>マリンレイク</li>
+                        </ul>
+                    `
+                }
+            };
+
+            // 国を選択した際の処理
+            countryDropdown.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    e.preventDefault();
+                    const selectedCountry = e.target.getAttribute('data-country');
+                    if (selectedCountry && countryData[selectedCountry]) {
+                        const data = countryData[selectedCountry];
+                        countryName.textContent = data.name;
+                        countryDetails.innerHTML = data.details;
+
+                        // 国情報セクションを表示
+                        countryInfo.style.display = 'block';
+                    } else {
+                        countryInfo.style.display = 'none'; // 国情報セクションを隠す
+                    }
+                }
+            });
+        });
+    </script>
+
+    <style>
+        /* 国情報ページのスタイル */
+        #info-container {
+            max-width: 800px;
+            margin: 100px auto;
+            background-color: var(--color-base);
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: var(--color-text);
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: var(--color-text);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .trigger-drop {
+            padding: 10px;
+            background-color: var(--color-accent);
+            color: var(--color-base);
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .drop {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background: var(--color-base);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .drop {
+            display: block;
+        }
+
+        .drop li {
+            list-style: none;
+            padding: 10px;
+        }
+
+        .drop li a {
+            display: block;
+            padding: 10px;
+            color: var(--color-text);
+            transition: background-color 0.3s;
+        }
+
+        .drop li a:hover {
+            background-color: var(--color-accent);
+            color: var(--color-base);
+        }
+
+        #country-details {
+            white-space: pre-line;
+            text-align: left;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+    </style>
+</body>
+</html>

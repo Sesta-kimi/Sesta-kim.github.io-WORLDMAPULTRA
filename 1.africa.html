@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界地図ultra</title>
+    <link rel="stylesheet" href="kaken2.2.css"> <!-- 外部CSSファイルをリンク -->
+</head>
+<body>
+    <nav id="navigation">
+        <a href="1.kaken2.1.html" class="logo">世界地図ultra<span>+</span></a>
+        <ul class="links">
+            <li><a href="1.kaken2.1.html">ホーム</a></li>
+            <li><a href="https://www.google.com/maps" target="_blank">世界地図</a></li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">クイズ<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.africa_quiz.html">アフリカ</a></li>
+                    <li><a href="1.asia_quiz.html">アジア</a></li>
+                    <li><a href="1.europe_quiz.html_">ヨーロッパ</a></li>
+                    <li><a href="1.north-america_quiz.html">北アメリカ</a></li>
+                    <li><a href="1.south-america_quiz.html">南アメリカ</a></li>
+                    <li><a href="1.oceania_quiz.html">オセアニア</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">国<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.africa.html">アフリカ</a></li>
+                    <li><a href="1.asia.html">アジア</a></li>
+                    <li><a href="1.europe.html">ヨーロッパ</a></li>
+                    <li><a href="1.north_america.html">北アメリカ</a></li>
+                    <li><a href="1.south_america.html">南アメリカ</a></li>
+                    <li><a href="1.oseania.html">オセアニア</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Language<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.kaken2.1.html">1.日本語</a></li>
+                    <li><a href="2.kaken2.1.html">2.English (U.S.)</a></li>
+                    <li><a href="3.kaken2.1.html">3.English (UK)</a></li>
+                    <li><a href="4.kaken2.1.html">4.中文</a></li>
+                    <li><a href="5.kaken2.1.html">5.Русский (язык)</a></li>
+                    <li><a href="">オセアニア</a></li>
+                </ul>
+            </li>
+            <li><a href="#">ランキング</a></li>
+        </ul>
+    </nav>
+    
+    <div id="info-container">
+        <h1>アフリカ地域の国情報</h1>
+        <p>以下の国から選んでください:</p>
+
+        <!-- ドロップダウンメニュー -->
+        <div class="dropdown">
+            <a href="#" class="trigger-drop">国を選択<i class="arrow"></i></a>
+            <ul class="drop" id="country-dropdown">
+                <li><a href="#" data-country="nigeria">ナイジェリア</a></li>
+                <li><a href="#" data-country="egypt">エジプト</a></li>
+                <li><a href="#" data-country="south-africa">南アフリカ</a></li>
+                <li><a href="#" data-country="mali">マリ共和国</a></li>
+                <li><a href="#" data-country="ghana">ガーナ</a></li>
+            </ul>
+        </div>
+
+        <!-- 国情報セクション -->
+        <div id="country-info" style="display:none;">
+            <h2 id="country-name"></h2>
+            <div id="country-details"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const countryDropdown = document.getElementById('country-dropdown');
+            const countryInfo = document.getElementById('country-info');
+            const countryName = document.getElementById('country-name');
+            const countryDetails = document.getElementById('country-details');
+
+            // 国情報データ
+            const countryData = {
+                nigeria: {
+                    name: 'ナイジェリア',
+                    details: `
+                        <h3>基本情報</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 2億2,380万人</li>
+                            <li><strong>面積:</strong> 923,773㎢</li>
+                            <li><strong>首都:</strong> アブジャ（Abuja）</li>
+                            <li><strong>言語:</strong> 英語（公用語）</li>
+                            <li><strong>主な宗教:</strong> イスラム教（北部中心）、キリスト教（南部中心）、伝統宗教（全域）</li>
+                        </ul>
+
+                        <h3>生活</h3>
+                        <ul>
+                            <li>経済成長をしているが、困窮者が多くあまり豊かな暮らしをしていません。</li>
+                            <li>現在は食生活の見直しを重視しています。</li>
+                        </ul>
+
+                        <h3>食事</h3>
+                        <ul>
+                            <li>ヤム芋やキャッサバ芋、セリモナ粉（パスタのようなものを作るやつ）が主食です。</li>
+                            <li>主食の主な食べ方としては、餅のように加工して手でちぎり、ソースをつけて素手で食べます。</li>
+                        </ul>
+
+                        <h3>マナー</h3>
+                        <ul>
+                            <li>小さい子には、卵を食べさせてしまうと泥棒になってしまうという言い伝えがあるため、卵を食べさせてはいけません。</li>
+                        </ul>
+
+                        <h3>観光名所</h3>
+                        <ul>
+                            <li></li>
+                        </ul>
+                    `
+                },
+                egypt: {
+                    name: 'エジプト',
+                    details: `
+                        <h3>基本情報</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 1.127億人</li>
+                            <li><strong>面積:</strong> 1,002,000㎢</li>
+                            <li><strong>首都:</strong> カイロ</li>
+                            <li><strong>言語:</strong> アラビア語</li>
+                            <li><strong>主な宗教:</strong> イスラム教</li>
+                        </ul>
+
+                        <h3>生活</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>食事</h3>
+                        <ul>
+                            <li>コシャリ、タターメイヤ、アエーシどが食べられている。</li>
+                            <li>左手は不浄なものとされているため、食事は右手の指先を使う。</li>
+                            <li>一口を大きく広げて食べる行為をしてはいけない。</li>
+                            <li>料理は少し残す。</li>
+                        </ul>
+
+                        <h3>マナー</h3>
+                        <ul>
+                            <li>過度に肌を露出した服装での外出は避ける必要がある。</li>
+                            <li>また、レストランや観光ホテル等以外の屋外での飲酒も避ける必要がある。</li>
+                            <li>子供を撫でてはいけない。</li>
+                            <li>基本的に写真を撮ってはいけない。</li>
+                        </ul>
+
+                        <h3>観光名所</h3>
+                        <ul>
+                            <li>ピラミッド</li>
+                            <li>アブシンベル神殿</li>
+                        </ul>
+                        `
+                },
+                'south-africa': {
+                    name: '南アフリカ',
+                    details: `
+                        <h3>基本情報</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 6,203万人</li>
+                            <li><strong>面積:</strong> 122,000㎢</li>
+                            <li><strong>首都:</strong> プレトリア</li>
+                            <li><strong>言語:</strong> 英語、アフリカーンス語</li>
+                            <li><strong>主な宗教:</strong> キリスト教</li>
+                        </ul>
+
+                        <h3>生活</h3>
+                        <ul>
+                            <li>時間をあまり気にしない。</li>
+                            <li>車の荷台に大勢で乗る(移動手段)。</li>
+                            <li>土日には早くお店が閉まる。</li>
+                        </ul>
+
+                        <h3>食事</h3>
+                        <ul>
+                            <li>ポイキ、バニー・チョー、ミルクタルトなどが食べられている。</li>
+                            <li>基本的に乾燥しているものが良く食べられている。</li>
+                            <li>色々な国の食文化に影響されている。</li>
+                        </ul>
+
+                        <h3>マナー</h3>
+                        <ul>
+                            <li>集合時間に10~15分遅れてくることはよくある。</li>
+                            <li>チップは料金の10%渡すようにする。</li>
+                            <li>基本的に禁煙(環境を守るため)。</li>
+                        </ul>
+
+                        <h3>観光名所</h3>
+                        <ul>
+                            <li>ケープタウン</li>
+                            <li>クルーガー国立公園</li>
+                            <li>ボガーブ地区</li>
+                            <li>ジャカランダの町　プレトリア</li>
+                        </ul>
+                        `
+                },
+                mali: {
+                    name: 'マリ共和国',
+                    details:  `
+                        <h3>基本情報</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 2,329万人</li>
+                            <li><strong>面積:</strong> 124,000㎢</li>
+                            <li><strong>首都:</strong> バマコ</li>
+                            <li><strong>言語:</strong> バンバラ語、フルフルデ語</li>
+                            <li><strong>主な宗教:</strong> イスラム教、キリスト教</li>
+                        </ul>
+
+                        <h3>生活</h3>
+                        <ul>
+                            <li>世界の中でも貧困率が高く、安全な飲料水の不足や、保健衛生の知識が十分に理解されていない。</li>
+                            <li>初等教育の品質が低く、終了率も悪い。</li>
+                            <li>子供たちの保護に関する理解の不十分さなど、持続可能な農業ができないなど多くの問題を抱えている。</li>
+                        </ul>
+
+                        <h3>食事</h3>
+                        <ul>
+                            <li>南のほうでは「ト」が主食として食べられている。</li>
+                            <li>一緒に食べられているものとして、おくらやバオバブの葉から作られたソースと一緒に食べられている。</li>
+                            <li>北のほうでは「ファッコイ」というソースが米と一緒に食べられている。</li>
+                            <li>また、トと一緒にオクラやバオバブのソースも食されている。</li>
+                        </ul>
+
+                        <h3>マナー</h3>
+                        <ul>
+                            <li>人口の80%近くがイスラム教を信仰しているので、モスクに関係する建造物や遺跡がある。</li>
+                        </ul>
+
+                        <h3>観光名所</h3>
+                        <ul>
+                            <li>トンブクトゥ：1988年に世界遺産に登録され、黄金郷とも呼ばれるほど栄えていたが、現在は砂漠化の進行により既に埋もれている状態。</li>
+                            <li>バンディガラの絶壁：こちらも世界遺産に登録されており、その神秘的で美しい建造物は、数多くのマリ観光客を魅了している。</li>
+                            <li>マリ国物博物館：マリの貴重で多彩な文化資料が集約されています。</li>
+                        </ul>
+                        `
+                },
+                ghana: {
+                    name: 'ガーナ',
+                    details: 'ガーナは西アフリカに位置し、豊かな歴史と文化を持つ国です。首都はアクラで、主要な言語は英語です。'
+                }
+            };
+
+            // 国を選択した際の処理
+            countryDropdown.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    e.preventDefault();
+                    const selectedCountry = e.target.getAttribute('data-country');
+                    if (selectedCountry && countryData[selectedCountry]) {
+                        const data = countryData[selectedCountry];
+                        countryName.textContent = data.name;
+                        countryDetails.innerHTML = data.details; // HTMLを挿入
+
+                        // 国情報セクションを表示
+                        countryInfo.style.display = 'block';
+                    } else {
+                        countryInfo.style.display = 'none'; // 国情報セクションを隠す
+                    }
+                }
+            });
+        });
+    </script>
+
+    <style>
+        /* 国情報ページのスタイル */
+        #info-container {
+            max-width: 800px;
+            margin: 100px auto;
+            background-color: var(--color-base);
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: var(--color-text);
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: var(--color-text);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .trigger-drop {
+            padding: 10px;
+            background-color: var(--color-accent);
+            color: var(--color-base);
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .drop {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background: var(--color-base);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .drop {
+            display: block;
+        }
+
+        .drop li {
+            list-style: none;
+            padding: 10px;
+        }
+
+        .drop li a {
+            display: block;
+            padding: 10px;
+            color: var(--color-text);
+            transition: background-color 0.3s;
+        }
+
+        .drop li a:hover {
+            background-color: var(--color-accent);
+            color: var(--color-base);
+        }
+    </style>
+</body>
+</html>
